@@ -16,7 +16,4 @@ main(_) ->
   {ok,[Digit]} = In1,
   % can not output simple ~d
   io:fwrite("the digit is is ~.10B~n",[Digit]),
-  % ~f is a float
-  io:fwrite("the digit is is ~f~n",[Digit])
-
 .

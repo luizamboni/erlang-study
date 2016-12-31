@@ -110,6 +110,11 @@ main(_) ->
   % -- "Zips" two lists of equal length into one list of two-tuples, where the first element of each tuple is taken from the first list and the second element is taken from corresponding element in the second list.
   io:fwrite(
     "zip Original from other List:  ~w~n", 
-    [lists:zip(Original,[1,2,3,4,5])]
+    [ lists:zip(Original,[1,2,3,4,5]) ]
+  ),
+
+  io:fwrite(
+    "take a 5 item from Original:  ~w~n", 
+    [ lists:nth(5,Original) ]
   )
 .

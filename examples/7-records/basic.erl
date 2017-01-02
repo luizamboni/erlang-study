@@ -21,7 +21,6 @@ main(_) ->
   % test record type
   , io:fwrite("is a inverse_index record? ~w~n", [is_record(T,inverse_index)])
 
-
   , Index = [ T, T2 ]
   , io:fwrite("~w~n", [Index])
 .

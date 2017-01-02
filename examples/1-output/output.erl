@@ -20,6 +20,4 @@ main(_) ->
   io:fwrite("formated ~.2B ~n",[10]),
   % base 16
   io:fwrite("formated ~.16B ~n",[10])
-
-
 .

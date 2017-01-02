@@ -23,5 +23,4 @@ main(_) ->
 
   % only when Y = X * 3
   io:fwrite("~w~n",[ [ {X,Y} || X <- Original, Y <- Original2, Y =:= X * 3 ] ])
-
 .

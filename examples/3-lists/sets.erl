@@ -17,5 +17,4 @@ main(_) ->
   io:fwrite("~nthe non Simetric product is: ~n~w~n", [non_symetric(Original)]),
   io:fwrite("~nthe Simetric product is: ~n~w~n", [symetric(Original)]),
   io:fwrite("~nthe sum of all terms is: ~w~n", [sum(Original)])
-
 .

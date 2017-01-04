@@ -35,9 +35,20 @@ main(_) ->
   % , M8 = M7#{ c := c} % it will raise error
   , M8 = M7#{ b := c}
   , io:fwrite("~w~n",[M8])
-  , V = M7#{ b }
-  , io:fwrite("~w~n",[V])
 
+  , M9 = #{ a => {1,2} }
+
+  % example of pattern
+  , #{ a := {1,C}} = M9
+  , io:fwrite("~w~n",[C])
+
+  , X = 5
+  , io:fwrite("~w~n",[ #{ X => X - 1 } ])
+
+  % this pattern not works
+  % , M10 = #{ a => 1, c => 3 }
+  % , X = M10#{ c }
+  % , io:fwrite("~w~n",[ X ])
 . 
 
 f() ->

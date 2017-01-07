@@ -47,7 +47,7 @@ main(_) ->
   
   , io:fwrite("size of M0: ~w~n",[maps:size(M0)])
 
-  , io:fwrite("put k,V in M0: ~w~n",[maps:put(xx,inserted,M0)])
+  , io:fwrite("put K,V in M0: ~w~n",[maps:put(xx,inserted,M0)])
 
   , io:fwrite("take key 1: ~w~n",[maps:take(1,M0)])
 

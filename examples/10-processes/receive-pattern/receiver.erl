@@ -2,13 +2,14 @@
 
 -export([loop/0]).
 
-
 loop() ->
   receive
     { From, Msg } ->
-      io:format(Msg),
+      io:fwrite("~s~n",[Msg]),
       loop();
    { Msg } ->
-      io:format(Msg),
+      io:fwrite("~s~n",[Msg]),
       loop()  
-  end.
+      % halt()
+  end
+.

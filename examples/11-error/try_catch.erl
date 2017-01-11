@@ -18,6 +18,21 @@ main(_) ->
       % expression
       io:fwrite("after catch~n")
     end
+
+  , try throw_error(custom) of
+      % pattern when guard -> expression
+      Tuple -> io:fwrite("2) in try block ~w~n",[Tuple])
+    catch
+      % pattern when guard -> expression
+
+      throw:custom_error -> io:fwrite("It is but a scratch.~n");
+      error:cut_arm -> io:fwrite("I've had worse.~n");
+      exit:cut_leg -> io:fwrite("Come on you pansy! ~n");
+      _:_ -> io:fwrite("2) Just a flesh wound ~n")
+    after
+      % expression
+      io:fwrite("2) after catch~n")
+    end
 .
 
 

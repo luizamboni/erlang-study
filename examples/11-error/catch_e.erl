@@ -5,7 +5,9 @@
 -export([main/1]).
 
 main(_) -> 
-  io:fwrite("error catch: ~w~n",[error()])
+    io:fwrite("error catch: ~w~n",[error()])
+  , X = (catch 4/0)
+  , io:fwrite("X is: ~w~n",[X])
 .
 
 error() -> 

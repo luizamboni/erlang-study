@@ -11,7 +11,6 @@ main(_) ->
   , slash(3)
   , slash(4)
   , slash(5)
-
 .
 
 
@@ -35,5 +34,4 @@ sword(2) -> erlang:exit(custom);
 sword(3) -> throw(throw_error);
 sword(4) -> {ok, "hoooo !"};
 sword(5) -> {ko, "slaaaaash !"}
-
 .

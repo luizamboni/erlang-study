@@ -1,7 +1,10 @@
+% HOW USE IT:
+% c(links).
+% process_flag(trap_exit, true) 
+% links:main(x).
+  
 -module(links).
-
 -export([main/1]).
-
 
 main(_) ->
 	link(spawn(fun() -> start_process(0) end)),

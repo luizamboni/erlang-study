@@ -11,7 +11,7 @@
 
 start(Name, Mod) ->
     register(Name, spawn(fun() -> loop(Name,Mod,Mod:init()) end)).
-
+    
 rpc(Name, Request) ->
     Name ! {self(), Request},
     receive

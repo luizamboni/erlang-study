@@ -3,27 +3,26 @@
 -behaviour(gen_server).
 -compile(export_all).
 
+%%  in example_sup -> 
+%      console, { example, start_link, [] }, 
 start_link() ->
-  gen_server:start_link(?MODULE, [], [])
+  gen_server:start_link({local,?MODULE},?MODULE, [], [])
 .
 
-start_link(ID) ->
-  io:format("~p:~p has started ID=~p  ~n", [?MODULE,?LINE,ID]),
-  gen_server:start_link({local,ID},?MODULE, [], [])
-.
+% send_message(Msg) -> 
+%   gen_server:call(?MODULE, {new, Msg})
+% .
 
-start_link(ID,MODULE,Arg,Opt) ->
-  io:format("~p:~p has started arg=~p  ~n", 
-           [?MODULE,?LINE,{ID,MODULE,Arg,Opt}]),
-
-  gen_server:start_link(ID,MODULE, Arg, Opt)
-.
-
+% cai aqui %
 init(_Args) ->
-  io:format("~p:~p has started ~p ~p ~n", [?MODULE,?LINE,self(),_Args]),
-  % If the initialization is successful, the function
-  % should return {ok,State} or {ok,State,Timeout} 
-  {ok, {started,{date(),time()}}}
+     
+     process_flag(trap_exit, true)
+   , io:format("~p:~p has started  !!!!!!!  ~p ~p ~n", 
+      [ ?MODULE, ?LINE, self(), _Args ]
+    )
+    % If the initialization is successful, the function
+    % should return {ok,State} or {ok,State,Timeout} 
+  , { ok, { started, { date(), time() } } }
 .
  
 handle_cast(Subject, State) -> 
@@ -39,34 +38,38 @@ handle_cast(Subject, State) ->
 
 terminate(Reason, State)->
   io:format("~p:~p ~p has terminated by reason ~p ~p ~n", 
-           [ ?MODULE, ?LINE, self(), Reason, State ]),
+           [ ?MODULE, ?LINE, self(), Reason, State ]
+  ),
   ok
 .
 
 code_change(Vsn,State,Ext)->
   io:format("~p:~p code_change ~p ~p ~p ~n",
-           [ ?MODULE, ?LINE, Vsn, State, Ext ]),
-  
-  {ok,State}
+   [ ?MODULE, ?LINE, Vsn, State, Ext ]
+  ),
+  { ok,State}
 .
-
+% Synchronous Requests - Call
 handle_call(Request, From, State)->
   io:format("~p:~p handle_call ~p ~p ~p ~n",
-           [?MODULE,?LINE,Request, From, State]),
-
-  {noreply, State}
+   [ ?MODULE, ?LINE, Request, From, State]
+  ), 
+  {reply, From, State}
 .
-
+% Asynchronous Requests - Cast
+% gen_server:cast(ref, {free, Ch}).
 handle_cast(Request, From, State)->
   io:format("~p:~p handle_cast ~p ~p ~p ~n",
-           [?MODULE,?LINE,Request, From, State]),
+   [ ?MODULE, ?LINE, Request, From, State]
+  ),
 
   {noreply, State}
 .
  
-handle_info(Info,State)->
+handle_info(Info,State) ->
   io:format("~p:~p handle_info ~p ~p  ~n",
-           [?MODULE,?LINE,Info,State]),
+    [ ?MODULE, ?LINE, Info,State]
+  ),
 
   {noreply, State}
 .

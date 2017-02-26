@@ -29,3 +29,10 @@ unload app
   > application:unload(example_app).
 
 ```
+
+
+# Usage
+$ erl
+cover:compile_directory().
+application:start(example_app).
+example_app:list().
